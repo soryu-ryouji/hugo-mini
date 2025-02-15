@@ -4,7 +4,6 @@
   $--primary-text-color,
   $--secondary-text-color,
   $--link-color,
-  $--visited-link-color,
   $--highlight
 ) {
   background-color: $--bg-color;
@@ -13,9 +12,6 @@
 
   a {
     color: $--link-color;
-    &:visited {
-      color: $--visited-link-color;
-    }
   }
 
   details {
@@ -65,11 +61,11 @@
 }
 
 @mixin dark-appearance {
-  @include theme(#212121, #fafafa, #000000, #0071bc, #a359e9, #ffff00);
+  @include theme(#212121, #fafafa, #000000, #0071bc, #ffff00);
 }
 
 @mixin light-appearance {
-  @include theme(#ffffff, #212121, #666666, #1e70bf, #921292, #ffff00);
+  @include theme(#ffffff, #212121, #666666, #1e70bf, #ffff00);
 }
 
 body[a="dark"] {
