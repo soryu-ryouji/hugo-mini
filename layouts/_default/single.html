@@ -1,7 +1,7 @@
 {{ define "main" }}
 {{ partial "back_link.html" .}}
 
-<article>
+<article class="post" {{- if .Param "seq" }} seq {{- end }}>
     <p class="post-meta">
         <time datetime="{{ .Date }}">
             {{ .Date | time.Format site.Params.theme_config.date_format }}
