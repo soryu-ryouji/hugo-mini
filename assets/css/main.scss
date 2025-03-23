@@ -31,8 +31,10 @@
   }
 
   code:not(pre > code) {
-    background-color: $--primary-text-color;
-    color: $--bg-color;
+    background-color: rgb(229, 229, 229);
+    font-size: 1em;
+    font-family: "consolas";
+    color: $--primary-text-color;
   }
 
   *:target {
