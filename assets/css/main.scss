@@ -30,6 +30,13 @@
     background: $--bg-color;
   }
 
+  code {
+    font-family: "consolas";
+    font-size: 1em;
+
+    border: $--primary-text-color;
+  }
+
   code:not(pre > code) {
     background-color: rgb(229, 229, 229);
     font-size: 1em;
