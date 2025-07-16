@@ -75,6 +75,7 @@ table tfoot {
 
   /* 代码块内的code元素 - 保持无边框 */
   pre>code {
+    font-family: "consolas";
     border: none;
     padding: 0;
     background: transparent;
@@ -145,7 +146,7 @@ html {
 }
 
 body {
-  font-family: consolas;
+  font-family: "consolas";
   font-size: 1em;
   line-height: 1.4;
   margin: 0;
