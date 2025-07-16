@@ -1,11 +1,44 @@
 // -------------- THEME SWITCHER -------------- //
-@mixin theme(
-  $--bg-color,
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border: none; // 移除所有边框
+  border-bottom: 2px solid;
+}
+
+table caption {
+  font-weight: bold;
+  margin-bottom: 0.5em;
+}
+
+th,
+td {
+  padding: 0.4rem;
+  text-align: left;
+  border: none; // 移除单元格边框
+}
+
+// 顶部边框
+table thead {
+  border-top: 2px solid;
+}
+
+// 标题行底部边框
+table thead tr th {
+  border-bottom: 1px solid;
+}
+
+// 表格底部边框
+table tfoot {
+  border-bottom: 2px solid;
+}
+
+@mixin theme($--bg-color,
   $--primary-text-color,
   $--secondary-text-color,
   $--link-color,
-  $--highlight
-) {
+  $--highlight) {
   background-color: $--bg-color;
 
   color: $--primary-text-color;
@@ -26,22 +59,37 @@
     border-bottom: 1px solid $--primary-text-color;
   }
 
+  /* 代码块样式 - 添加边框 */
   pre {
-    background: $--bg-color;
+    padding: 1em;
+    overflow-x: auto;
+    border: 1px solid;
+    /* 添加边框 */
+    border-radius: 4px;
+    /* 可选圆角 */
+    background: inherit;
+    /* 继承主题背景色 */
+    margin: 1em 0;
+    /* 增加外边距 */
   }
 
-  code {
-    font-family: "consolas";
-    font-size: 1em;
-
-    border: $--primary-text-color;
+  /* 代码块内的code元素 - 保持无边框 */
+  pre>code {
+    border: none;
+    padding: 0;
+    background: transparent;
+    /* 透明背景 */
   }
 
+  /* 行内代码 - 无边框，保留原有样式 */
   code:not(pre > code) {
-    background-color: rgb(229, 229, 229);
-    font-size: 1em;
     font-family: "consolas";
-    color: $--primary-text-color;
+    font-size: 1em;
+    border: none;
+    /* 明确移除边框 */
+    background-color: rgba(0, 0, 0, 0.05);
+    /* 轻微背景色 */
+    padding: 0.2em 0.4em;
   }
 
   *:target {
@@ -49,23 +97,16 @@
     color: $--primary-text-color;
   }
 
-  table,
-  th,
-  td {
-    border: thin solid $--primary-text-color;
+  table thead {
+    border-top-color: $--primary-text-color;
   }
 
-  .toc {
-    border: thin solid $--primary-text-color;
-    padding: 1rem;
+  table thead tr th {
+    border-bottom-color: $--primary-text-color;
   }
 
-  figcaption {
-    color: $--secondary-text-color;
-  }
-
-  blockquote {
-    border: thin solid $--primary-text-color;
+  table tfoot {
+    border-bottom-color: $--primary-text-color;
   }
 }
 
@@ -80,6 +121,7 @@
 body[a="dark"] {
   @include dark-appearance;
 }
+
 body[a="light"] {
   @include light-appearance;
 }
@@ -121,6 +163,7 @@ li {
 
 a {
   text-decoration: none;
+
   &:hover {
     text-decoration: underline;
   }
@@ -134,6 +177,7 @@ hr {
   &:before {
     content: "/////";
   }
+
   &:after {
     content: attr(data-content) "/////";
   }
@@ -141,7 +185,8 @@ hr {
 
 pre {
   padding: 1em;
-  overflow-x: auto; /* Fix pre content overflowing parent without scroll bar */
+  overflow-x: auto;
+  /* Fix pre content overflowing parent without scroll bar */
 }
 
 table {
@@ -236,12 +281,15 @@ h6 {
 body {
   counter-reset: h2;
 }
+
 h2 {
   counter-reset: h3;
 }
+
 h3 {
   counter-reset: h4;
 }
+
 h4 {
   counter-reset: h5;
 }
@@ -250,10 +298,12 @@ article[seq] h2:before {
   counter-increment: h2;
   content: counter(h2) ". ";
 }
+
 article[seq] h3:before {
   counter-increment: h3;
   content: counter(h2) "." counter(h3) " ";
 }
+
 article[seq] h4:before {
   counter-increment: h4;
   content: counter(h2) "." counter(h3) "." counter(h4) " ";
@@ -262,6 +312,7 @@ article[seq] h4:before {
 article[seq] .toc ul {
   counter-reset: item;
 }
+
 article[seq] .toc li a:before {
   content: counters(item, ".") " ";
   counter-increment: item;
